@@ -7,5 +7,5 @@ using Newtonsoft.Json;
 
 public static class BaseDatos
 {
-    private static string_connectionString = @"Server=localhost; DataBase=Integrante; Integrated Security=True; TrustServer Certificate=True;";
+    private static string _connectionString = @"Server=localhost; DataBase=Integrante; Integrated Security=True; TrustServer Certificate=True;";
 }
