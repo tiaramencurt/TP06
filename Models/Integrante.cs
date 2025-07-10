@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 using Microsoft.Data.SqlClient;
+using Dapper;
 
 namespace TP06.Models;
 public class Integrante

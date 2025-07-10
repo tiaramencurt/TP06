@@ -1,5 +1,9 @@
 using Microsoft.Data.SqlClient;
 using Dapper;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Newtonsoft.Json;
 
 public static class BaseDatos
 {
