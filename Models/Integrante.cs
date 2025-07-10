@@ -26,5 +26,19 @@ public class Integrante
     public string datoCurioso {get; private set;}
     [JsonProperty]
     public string foto {get; private set;}
-
+    public Integrante(string n, string m, string c, string nE, string a, string g, DateTime fN, string dC, string f)
+    {
+        this.nombre = n;
+        this.mail = m;
+        this.contraseña = c;
+        this.nombreEquipo = nE;
+        this.apellido = a;
+        this.genero = g;
+        this.fechaNacimiento = fN;
+        this.datoCurioso = dC;
+        this.foto = f;
+    }
+    public Integrante()
+    {
+    }
 }
