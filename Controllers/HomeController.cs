@@ -87,6 +87,5 @@ public class HomeController : Controller
                 BaseDatos.GuardarIntegrante(integrante);
             }
         }
-
-    }
+    }//HAY QUE TERMINAR ESTE METODO
 }
