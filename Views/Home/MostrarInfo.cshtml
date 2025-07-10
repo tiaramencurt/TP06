@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = "Información de " + @ViewBag.nombre;
+}
+
+<h1>@ViewBag.nombre @ViewBag.apellido</h1>
+<h2>@ViewBag.foto</h2>
+<h2>Equipo: @ViewBag.nombreEquipo</h2>
+<h3>
+    Género: @ViewBag.genero
+    Fecha de nacimiento: @ViewBag.fechaNacimiento
+    Dato curioso: @ViewBag.datoCurioso
+</h3>
