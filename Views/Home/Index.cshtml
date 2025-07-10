@@ -1,8 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inicio";
 }
 
 <div>
-    <h1>Index</h1>
+    <h1>Inicio</h1>
     <p>Bienvenidos al sitio web de NombreProyecto</p>
+
+    <a href='@Url.Action("IniciarSesion", "Home")'>Iniciar sesión</a> <!-- ver si esta bien -->
+    <a href='@Url.Action("Registrarse", "Home")'>Registrarse</a>  <!-- ver si esta bien -->
 </div>
