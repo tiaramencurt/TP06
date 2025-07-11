@@ -29,6 +29,14 @@ public class HomeController : Controller
             return View("MostrarInfo");
         }
     }
+    public IActionResult IrRegistrarse()
+    {
+        return View("Registrarse");
+    }
+    public IActionResult IrIniciarSesion()
+    {
+        return View("IniciarSesion");
+    }
     public IActionResult IniciarSesion(string mail, string contraseña)
     {
         Integrante integrante = Objeto.StringToObject<Integrante>(HttpContext.Session.GetString("integrante"));

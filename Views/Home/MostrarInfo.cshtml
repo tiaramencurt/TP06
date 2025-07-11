@@ -1,7 +1,7 @@
 @{
     ViewData["Title"] = "Información de " + @ViewBag.nombre;
 }
-@foreach(Integrante integrante in ViewBag.integrante)
+@foreach(Integrante integrante in ViewBag.integrantes)
 {
     <div>
         <h1>@integrante.nombre @integrante.apellido</h1>
