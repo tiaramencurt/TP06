@@ -34,29 +34,28 @@ public class HomeController : Controller
         Integrante integrante = Objeto.StringToObject<Integrante>(HttpContext.Session.GetString("integrante"));
         if(integrante == null)
         {
-            return RedirectToAction("Redirigir");
+            integrante = BaseDatos.TraerIntegrante(mail);
+            if (integrante == null)
+            {
+                ViewBag.mailExiste = false;
+                ViewBag.contraseñaCoincide = true;
+                return View("IniciarSesion");
+            }
+            else if (integrante.contraseña == contraseña)
+            {
+                HttpContext.Session.SetString("integrante", Objeto.ObjectToString(integrante));
+                return RedirectToAction("MostrarInfo");
+            }
+            else
+            {
+                ViewBag.mailExiste = true;
+                ViewBag.contraseñaCoincide = false;
+                return View("IniciarSesion");
+            }
         }
         else
         {
-            integrante = BaseDatos.TraerIntegrante(mail);
-            HttpContext.Session.SetString("integrante", Objeto.ObjectToString(integrante));
-            if(integrante == null)
-            {
-                ViewBag.mailExiste = false;
-                return View("IniciarSesion");
-            }else
-            {
-                ViewBag.mailExiste = true;
-                if(integrante.contraseña == contraseña)
-                {
-                    ViewBag.contraseñaCoincide = true;
-                    return RedirectToAction("MostrarInfo");
-                }else
-                {
-                    ViewBag.contraseñaCoincide = false;
-                    return View("IniciarSesion");
-                }
-            }
+            return RedirectToAction("Redirigir");
         }
     }
     public IActionResult Registrarse(string mail, string nombreEquipo, string contraseña1, string contraseña2, string nombre, string apellido, string genero, DateTime fechaNacimiento, string datoCurioso, string foto)
@@ -94,7 +93,7 @@ public class HomeController : Controller
             ViewBag.integrantes = integrantes;
         }else
         {
-            Redirigir();
+            return RedirectToAction("Redirigir");
         }
         return View("MostrarInfo");
     }
