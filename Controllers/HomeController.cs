@@ -32,7 +32,7 @@ public class HomeController : Controller
     public IActionResult IniciarSesion(string mail, string contraseña)
     {
         Integrante integrante = Objeto.StringToObject<Integrante>(HttpContext.Session.GetString("integrante"));
-        if(integrante != null)
+        if(integrante == null)
         {
             return RedirectToAction("Redirigir");
         }
@@ -43,23 +43,19 @@ public class HomeController : Controller
             if(integrante == null)
             {
                 ViewBag.mailExiste = false;
+                return View("IniciarSesion");
             }else
             {
                 ViewBag.mailExiste = true;
-            }
-            if(integrante.contraseña == contraseña)
-            {
-                ViewBag.contraseñaCoincide = true;
-            }else
-            {
-                ViewBag.contraseñaCoincide = false;
-            }
-            if(ViewBag.contraseñaCoincide && ViewBag.mailExiste)
-            {
-                return RedirectToAction("MostrarInfo");
-            }else
-            {
-                return View("IniciarSesion");
+                if(integrante.contraseña == contraseña)
+                {
+                    ViewBag.contraseñaCoincide = true;
+                    return RedirectToAction("MostrarInfo");
+                }else
+                {
+                    ViewBag.contraseñaCoincide = false;
+                    return View("IniciarSesion");
+                }
             }
         }
     }
