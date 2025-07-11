@@ -26,7 +26,7 @@ public class HomeController : Controller
         }
         else
         {
-            return View("MostrarInfo");
+            return RedirectToAction("MostrarInfo");
         }
     }
     public IActionResult IrRegistrarse()
