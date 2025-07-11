@@ -56,7 +56,7 @@ public class HomeController : Controller
             }
             if(ViewBag.contraseñaCoincide && ViewBag.mailExiste)
             {
-                return View("MostrarInfo");
+                return RedirectToAction("MostrarInfo");
             }else
             {
                 return View("IniciarSesion");
@@ -71,21 +71,35 @@ public class HomeController : Controller
             return RedirectToAction("Redirigir");
         }
         integrante = BaseDatos.TraerIntegrante(mail);
-        HttpContext.Session.SetString("integrante", Objeto.ObjectToString(integrante));
         if(integrante == null)
         {
             ViewBag.mailExiste = false;
-        }else
-        {
-            ViewBag.mailExiste = true;
-        }
-        if(!ViewBag.mailExiste)
-        {
             if(contraseña1 == contraseña2)
             {
                 integrante = new Integrante(nombre, mail, contraseña1, nombreEquipo, apellido, genero, fechaNacimiento, datoCurioso, foto);
                 BaseDatos.GuardarIntegrante(integrante);
+                HttpContext.Session.SetString("integrante", Objeto.ObjectToString(integrante));
+                return RedirectToAction("MostrarInfo");
             }
+            return View("Registrarse");
+        }else
+        {
+            ViewBag.mailExiste = true;
+            return View("Registrarse");
         }
-    }//HAY QUE TERMINAR ESTE METODO
+    }
+    public IActionResult MostrarInfo()
+    {
+        Integrante integrante = Objeto.StringToObject<Integrante>(HttpContext.Session.GetString("integrante"));
+        if(integrante != null)
+        {
+            List<Integrante> integrantes = BaseDatos.TraerIntegrantes(integrante);
+            ViewBag.integrante = integrante;
+            ViewBag.integrantes = integrantes;
+        }else
+        {
+            Redirigir();
+        }
+        return View("MostrarInfo");
+    }
 }

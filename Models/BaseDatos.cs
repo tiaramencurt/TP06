@@ -26,5 +26,14 @@ public static class BaseDatos
             connection.Execute(query, new { pmail = integrante.mail, pcontraseña = integrante.contraseña, pnombre = integrante.nombre, pnombreEquipo = integrante.nombreEquipo, papellido = integrante.apellido, pgenero = integrante.genero, pfechaNacimiento = integrante.fechaNacimiento, pdatoCurioso = integrante.datoCurioso, pfoto = integrante.foto });
         }
     }
+    public static List<Integrante> TraerIntegrantes(Integrante integrante)
+    {
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "SELECT * FROM Integrante WHERE nombreEquipo = @pEquipo";
+            List<Integrante> integrantes = connection.Query<Integrante>(query, new { pEquipo = integrante.nombreEquipo }).ToList();
+            return integrantes;
+        }
+    }
 
 }
