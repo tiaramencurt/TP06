@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TP06.Models;
+using BCrypt.Net;
 
 namespace TP06.Controllers;
 
@@ -52,7 +53,7 @@ public class HomeController : Controller
                 ViewBag.contraseñaCoincide = true;
                 return View("IniciarSesion");
             }
-            else if (integrante.contraseña == contraseña)
+            else if (BCrypt.Net.BCrypt.Verify(contraseña, integrante.contraseña))
             {
                 HttpContext.Session.SetString("integrante", Objeto.ObjectToString(integrante));
                 return RedirectToAction("MostrarInfo");
@@ -82,7 +83,8 @@ public class HomeController : Controller
             ViewBag.mailExiste = false;
             if(contraseña1 == contraseña2)
             {
-                integrante = new Integrante(nombre, mail, contraseña1, nombreEquipo, apellido, genero, fechaNacimiento, datoCurioso, foto);
+                string hash = BCrypt.Net.BCrypt.HashPassword(contraseña1);
+                integrante = new Integrante(nombre, mail, hash, nombreEquipo, apellido, genero, fechaNacimiento, datoCurioso, foto);
                 BaseDatos.GuardarIntegrante(integrante);
                 HttpContext.Session.SetString("integrante", Objeto.ObjectToString(integrante));
                 return RedirectToAction("MostrarInfo");
