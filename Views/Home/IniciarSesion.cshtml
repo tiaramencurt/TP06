@@ -10,6 +10,14 @@
         <input type="text" name="mail" placeholder="Ingresar mail"/>
         <input type="password" name="contraseña" placeholder="Ingresar contraseña"/>
         <input type="submit" value="Ingresar datos" />
+        @if(!ViewBag.mailExiste)
+        {
+            <p>El mail ingresado no existe</p>
+        }
+        @if(!ViewBag.contraseñaCoincide)
+        {
+            <p>La contraseña es incorrecta</p>
+        }
     </form>
 </div>
 

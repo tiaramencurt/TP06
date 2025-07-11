@@ -18,6 +18,10 @@
         <input type="text" name="datoCurioso" placeholder="Ingresar dato curioso"/>
         <input type="text" name="foto" placeholder="Ingresar foto"/>
         <input type="submit" value="Guardar datos"/>
+        @if(ViewBag.mailExiste)
+        {
+            <p>El mail ingresado ya fue registrado anteriormente</p>
+        }
     </form>
 </div>
 

@@ -15,7 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View("IniciarSesion");
+        return RedirectToAction("IrIniciarSesion");
     }
     public IActionResult Redirigir()
     {
@@ -31,10 +31,13 @@ public class HomeController : Controller
     }
     public IActionResult IrRegistrarse()
     {
+        ViewBag.mailExiste = false;
         return View("Registrarse");
     }
     public IActionResult IrIniciarSesion()
     {
+        ViewBag.mailExiste = true;
+        ViewBag.contraseñaCoincide = true;
         return View("IniciarSesion");
     }
     public IActionResult IniciarSesion(string mail, string contraseña)
