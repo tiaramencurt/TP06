@@ -7,17 +7,17 @@
 <div>
     <h1>Registrarse</h1>
     <form action='@Url.Action("Registrarse", "Home")' method="post">
-        <input type="text" name="mail" placeholder="Ingresar mail"/>
-        <input type="password" name="contraseña1" placeholder="Ingresar contraseña"/>
-        <input type="password" name="contraseña2" placeholder="Ingresar de nuevo la contraseña"/>
-        <input type="text" name="nombreEquipo" placeholder="Ingresar nombre del equipo"/>
-        <input type="text" name="nombre" placeholder="Ingresar nombre"/>
-        <input type="text" name="apellido" placeholder="Ingresar apellido"/>
+        <input type="text" name="mail" placeholder="Ingresar mail" required/>
+        <input type="password" name="contraseña1" placeholder="Ingresar contraseña" required/>
+        <input type="password" name="contraseña2" placeholder="Ingresar de nuevo la contraseña" required/>
+        <input type="text" name="nombreEquipo" placeholder="Ingresar nombre del equipo" required/>
+        <input type="text" name="nombre" placeholder="Ingresar nombre" required/>
+        <input type="text" name="apellido" placeholder="Ingresar apellido" required/>
         <input type="text" name="genero" placeholder="Ingresar género"/>
-        <input type="datetime-local" name="fechaNacimiento" placeholder="Ingresar fecha de nacimiento"/>
-        <input type="text" name="datoCurioso" placeholder="Ingresar dato curioso"/>
-        <input type="text" name="foto" placeholder="Ingresar foto"/>
-        <input type="submit" value="Guardar datos"/>
+        <input type="datetime-local" name="fechaNacimiento" placeholder="Ingresar fecha de nacimiento" required/>
+        <input type="text" name="datoCurioso" placeholder="Ingresar dato curioso" required/>
+        <input type="text" name="foto" placeholder="Ingresar foto" required/>
+        <input type="submit" value="Guardar datos" required/>
         @if(ViewBag.mailExiste)
         {
             <p>El mail ingresado ya fue registrado anteriormente</p>
