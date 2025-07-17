@@ -33,6 +33,7 @@ public class HomeController : Controller
     public IActionResult IrRegistrarse()
     {
         ViewBag.mailExiste = false;
+        ViewBag.contraseñaCoincide = true;
         return View("Registrarse");
     }
     public IActionResult IrIniciarSesion()
@@ -73,6 +74,7 @@ public class HomeController : Controller
     public IActionResult Registrarse(string mail, string nombreEquipo, string contraseña1, string contraseña2, string nombre, string apellido, string genero, DateTime fechaNacimiento, string datoCurioso, string foto)
     {
         Integrante integrante = Objeto.StringToObject<Integrante>(HttpContext.Session.GetString("integrante"));
+        ViewBag.contraseñaCoincide = true;
         if(integrante != null)
         {
             return RedirectToAction("Redirigir");
@@ -88,6 +90,9 @@ public class HomeController : Controller
                 BaseDatos.GuardarIntegrante(integrante);
                 HttpContext.Session.SetString("integrante", Objeto.ObjectToString(integrante));
                 return RedirectToAction("MostrarInfo");
+            }else
+            {
+                ViewBag.contraseñaCoincide = false;
             }
             return View("Registrarse");
         }else
