@@ -21,7 +21,7 @@
         {
             <p>El mail ingresado ya fue registrado anteriormente</p>
         }
-        @if(ViewBag.contraseñaCoincide)
+        @if(!ViewBag.contraseñaCoincide)
         {
             <p>Ambas contraseñas no coinciden</p>
         }
